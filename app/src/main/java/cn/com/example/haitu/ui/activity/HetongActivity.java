@@ -73,7 +73,7 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
             @Override
             public void onClick(View view) {
 //                showPop(view);
-                if (SystemClock.currentThreadTimeMillis() - mSystemClock <= 400) {
+                if (SystemClock.currentThreadTimeMillis() - mSystemClock <= 200) {
                     return;
                 }
                 mSystemClock = SystemClock.currentThreadTimeMillis();
