@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BadgeView">
+        <attr name="badgeImageIcon" format="reference"/>
+        <attr name="badgeTextColor" format="color"/>
+        <attr name="badgeTextSize" format="dimension"/>
+        <attr name="badgeText" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="NiceSpinner">
+        <attr name="arrowTint" format="color" />
+        <attr name="hideArrow" format="boolean" />
+        <attr name="arrowDrawable" format="reference|color"/>
+        <attr name="dropDownListPaddingBottom" format="dimension"/>
+        <attr name="backgroundSelector" format="integer"/>
+        <attr name="textTint" format="color"/>
+    </declare-styleable>
+
+    <attr name="contract_title" format="string"/>
+    <attr name="contract_input" format="string"/>
+    <attr name="contract_pull_text" format="string"/>
+    <attr name="contract_item_text" format="string"/>
+    <!--定义一个名字为AttrContractTitleView属性集合-->
+    <declare-styleable name="AttrContractTitleView">
+        <attr name="contract_title"/>
+    </declare-styleable>
+    <declare-styleable name="AttrInputView">
+        <attr name="contract_input"/>
+    </declare-styleable>
+    <declare-styleable name="AttrPullDownItem">
+        <attr name="contract_pull_text"/>
+        <attr name="contract_item_text"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_relative_position"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<View
+
+    android:layout_width="match_parent"
+    android:layout_height="1dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:elevation="@dimen/dp_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ffededef"
+            android:orientation="vertical"
+            >
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tt"
+                android:background="@color/ff009fe9"
+                />
+
+            <!--租客个人信息-->
+            <LinearLayout
+                android:id="@+id/ll_tenant_basic_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:layout_marginRight="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_12"
+                android:background="@drawable/bg_white_corners"
+                android:elevation="@dimen/dp_4"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_8"
+                android:paddingTop="@dimen/dp_4"
+                android:layout_below="@+id/tt"
+                >
+
+                <cn.com.example.haitu.ui.widgets.AttrContractTitleView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_8"
+                    app:contract_title="租客基本信息"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrInputView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:layout_marginTop="@dimen/dp_3"
+                    app:contract_input="姓名"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrInputView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:layout_marginTop="@dimen/dp_3"
+                    app:contract_input="电话"
+                    />
+
+                <include layout="@layout/view_gender"/>
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="证件信息(选填)"
+                    app:contract_item_text="dddddd"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="更多信息(选填)"
+                    app:contract_item_text=""
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_start_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="合同开始时间"
+                    app:contract_item_text="2016-12-12"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="合同结束时间"
+                    app:contract_item_text="2017-12-12"
+                    />
+            </LinearLayout>
+            <!--租金-->
+            <LinearLayout
+               android:id="@+id/ll_rental"
+               android:layout_below="@id/ll_tenant_basic_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:layout_marginRight="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_12"
+                android:background="@drawable/bg_white_corners"
+                android:elevation="@dimen/dp_4"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_30"
+                android:paddingTop="@dimen/dp_4"
+                >
+
+
+                <cn.com.example.haitu.ui.widgets.AttrContractTitleView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_8"
+                    app:contract_title="租客基本信息"
+                    />
+
+
+
+
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="类型"
+                    app:contract_item_text="月租"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="付款方式"
+                    app:contract_item_text="一月一付"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_first_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="首付款方式"
+                    app:contract_item_text="压一付一"
+                    />
+
+                <cn.com.example.haitu.ui.widgets.AttrInputView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:layout_marginTop="@dimen/dp_3"
+                    app:contract_input="月租金"
+                    />
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:id="@+id/contract_pay_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="支付方式"
+                    app:contract_item_text="支付宝"
+                    />
+            </LinearLayout>
+            <!--附件-->
+            <LinearLayout
+                android:id="@+id/ll_incidentals"
+                android:layout_below="@id/ll_rental"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:layout_marginRight="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_12"
+                android:background="@drawable/bg_white_corners"
+                android:elevation="@dimen/dp_4"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_8"
+                android:paddingTop="@dimen/dp_30"
+                >
+
+                <LinearLayout
+                    android:id="@+id/contract_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    >
+
+                    <View
+                        android:layout_width="@dimen/dp_4"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:text="杂费"
+                        android:textColor="@color/ff333333"
+                        android:textSize="@dimen/sp_18"
+                        />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+
+                    <ImageView
+                        android:layout_marginRight="@dimen/dp_30"
+                        android:layout_width="@dimen/dp_22"
+                        android:layout_height="@dimen/dp_22"
+                        android:src="@drawable/ic_plus"
+                        />
+                </LinearLayout>
+
+                <cn.com.example.haitu.ui.widgets.AttrPullDownItem
+                    android:padding="@dimen/dp_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contract_pull_text="信息"
+                    app:contract_item_text="qq"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_4"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    >
+
+                    <View
+                        android:layout_width="@dimen/dp_4"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:text="合同附件"
+                        android:textColor="@color/ff333333"
+                        android:textSize="@dimen/sp_18"
+                        />
+                </LinearLayout>
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/dp_30"-->
+                    <!--android:layout_marginTop="@dimen/dp_10"-->
+                    <!--&gt;-->
+                    <!--<ImageView-->
+                        <!--android:layout_margin="@dimen/dp_3"-->
+                        <!--android:layout_width="@dimen/dp_65"-->
+                        <!--android:layout_height="@dimen/dp_65"-->
+                        <!--android:src="@drawable/ic_plus"-->
+                        <!--/>-->
+                    <!--<ImageView-->
+                        <!--android:layout_margin="@dimen/dp_3"-->
+                        <!--android:layout_width="@dimen/dp_65"-->
+                        <!--android:layout_height="@dimen/dp_65"-->
+                        <!--android:src="@drawable/ic_plus"-->
+                        <!--/>-->
+                     <!--<ImageView-->
+                        <!--android:layout_width="@dimen/dp_65"-->
+                        <!--android:layout_height="@dimen/dp_65"-->
+                        <!--android:src="@drawable/ic_addition"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+                <GridView
+                    android:id="@+id/gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:verticalSpacing="5dp"
+                    />
+
+                <EditText
+                    android:gravity="start"
+                    android:hint="淡定"
+                    android:layout_margin="@dimen/dp_16"
+                    android:background="@drawable/bg_gray_corners"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_100"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@id/ll_incidentals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_18"
+                >
+                <Button
+                    android:layout_marginRight="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@drawable/bg_e7e33b_bt"
+                    android:text="续租"
+                    android:textSize="@dimen/sp_18"
+                    android:textColor="@color/white"
+                    />
+                <Button
+                    android:layout_marginRight="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@drawable/bg_009fe9_bt"
+                    android:text="退租"
+                    android:textSize="@dimen/sp_18"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+
+            <!--连接器-->
+            <LinearLayout
+                android:layout_below="@id/ll_rental"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-35dp"
+                android:elevation="@dimen/dp_6"
+                >
+                <ImageView
+                    android:layout_marginLeft="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_70"
+                    android:src="@drawable/ic_cell_concatenate"
+                    />
+                <ImageView
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_70"
+                    android:src="@drawable/ic_cell_concatenate"
+                    />
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_1"/>
+                <ImageView
+                    android:layout_marginRight="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_70"
+                    android:src="@drawable/ic_cell_concatenate"
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/tt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/ff009fe9"
+
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/right"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合同详情"
+                    android:layout_centerInParent="true"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:src="@drawable/left"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>
