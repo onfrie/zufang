@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <cn.com.example.haitu.flexbox.widget.TagFlowLayout
+        android:background="@color/white"
+        android:id="@+id/flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="flex_start"
+        app:alignItems="center"
+        app:dividerDrawable="@drawable/bg_flow_divider"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:showDivider="beginning|middle|end"
+        app:selectDrawable="@drawable/bg_flow_selected"
+        app:defaultDrawable="@drawable/bg_flow_unselect"
+        app:selectTextColor="@android:color/white"
+        app:defaultTextColor="@color/txt_link_blue"
+        app:mode="MULTI"/>
+
+    <Button
+        android:id="@+id/btn_get_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请选择" />
+
+    <Button
+        android:id="@+id/btn_switch_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="切换数据" />
+
+</LinearLayout>

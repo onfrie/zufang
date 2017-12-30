@@ -39,10 +39,10 @@ public class GridViewAdapter extends BaseAdapter {
 //        Log.e(" 3333 ", this.list.size() + "");
     }
 
-    public GridViewAdapter(Context mContext, List list) {
+    public GridViewAdapter(Context mContext, ArrayList<TImage> list) {
         super();
         this.mContext = mContext;
-        this.list = (ArrayList<TImage>) list;
+        this.list =  list;
 //        Log.e(" 2222 ", list.size() + "");
     }
 

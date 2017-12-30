@@ -66,7 +66,6 @@ public class MainActivity extends BaseCompatActivity {
 
 
     private void initViews() {
-        // ���ֹ�����
         fManager = getSupportFragmentManager();
 
         iv_menu_home = (ImageView)findViewById(R.id.iv_menu_home);
