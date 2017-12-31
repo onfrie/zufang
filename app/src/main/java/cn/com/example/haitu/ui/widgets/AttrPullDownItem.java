@@ -21,7 +21,6 @@ public class AttrPullDownItem extends LinearLayout {
     private String itemText;
     private View root = null;
     private TextView mSelectTextTv;
-    private OnClickListeners mOnClickListeners;
 
     public AttrPullDownItem(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -37,26 +36,9 @@ public class AttrPullDownItem extends LinearLayout {
         TextView selectTv = (TextView) root.findViewById(R.id.tv_select_text);
         informationTv.setText(text);
         selectTv.setText(itemText);
-        LinearLayout openListLL = (LinearLayout) root.findViewById(R.id.ll_open_list);
         mSelectTextTv = (TextView) root.findViewById(R.id.tv_select_text);
-        openListLL.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mOnClickListeners != null) {
-                    mOnClickListeners.onClick(view);
-                }
-            }
-        });
     }
     public void setText(String text){
         mSelectTextTv.setText(text);
-    }
-
-    public void setOnclickListeners(OnClickListeners onclickListeners){
-        this.mOnClickListeners = onclickListeners;
-    }
-
-    private interface OnClickListeners{
-        void onClick(View view);
     }
 }

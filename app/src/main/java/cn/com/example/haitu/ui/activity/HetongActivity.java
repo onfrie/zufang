@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,14 +29,16 @@ import cn.com.example.haitu.R;
 import cn.com.example.haitu.flexbox.interfaces.OnFlexboxSubscribeListener;
 import cn.com.example.haitu.flexbox.widget.TagFlowLayout;
 import cn.com.example.haitu.flexlayout.StringTagAdapter;
+import cn.com.example.haitu.ui.widgets.AttrPullDownItem;
 import cn.com.example.haitu.ui.widgets.PopupWindow.CommonPopupWindow;
+import cn.com.example.haitu.utils.CommonUtil;
 import cn.com.example.haitu.utils.GridViewAdapter;
 
 /**
  * Created by Dell on 2017/12/24.
  */
 
-public class HetongActivity extends TakePhotoActivity implements AdapterView.OnItemClickListener {
+public class HetongActivity extends TakePhotoActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 //    @BindView(R.id.gridview)
 //    GridView mGridview;f
 
@@ -49,6 +53,8 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
     private ImageView mIncidentalsAdd;
 
     private long mSystemClock = 0;
+    private AttrPullDownItem mContractStartTime;
+    private AttrPullDownItem mContractEndTime;
 
 //    private GridView mViewById;
 
@@ -63,78 +69,35 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
     private void initPhoto() {
         mViewById = (GridView) findViewById(R.id.gridview);
         mIncidentalsAdd = (ImageView) findViewById(R.id.incidentals_add);
+        mContractStartTime = (AttrPullDownItem) findViewById(R.id.contract_start_time);
+        mContractEndTime = (AttrPullDownItem) findViewById(R.id.contract_end_time);
         mGridViewAdapter = new GridViewAdapter(this, image);
         mViewById.setAdapter(mGridViewAdapter);
         mViewById.setOnItemClickListener(this);
-        mIncidentalsAdd.setOnClickListener(new View.OnClickListener() {
+        mContractEndTime.setOnClickListener(this);
+        mContractStartTime.setOnClickListener(this);
+        mIncidentalsAdd.setOnClickListener(this);
 
+    }
 
-
+    private void showTime() {
+        if (SystemClock.currentThreadTimeMillis() - mSystemClock <= 200) {
+            return;
+        }
+        mSystemClock = SystemClock.currentThreadTimeMillis();
+        TimePickerView pvTime = new TimePickerView.Builder(HetongActivity.this, new TimePickerView.OnTimeSelectListener() {
             @Override
-            public void onClick(View view) {
-//                showPop(view);
-                if (SystemClock.currentThreadTimeMillis() - mSystemClock <= 200) {
-                    return;
-                }
-                mSystemClock = SystemClock.currentThreadTimeMillis();
-                TimePickerView pvTime = new TimePickerView.Builder(HetongActivity.this, new TimePickerView.OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View v) {//选中事件回调
+            public void onTimeSelect(Date date, View v) {//选中事件回调
 //                        tvTime.setText(getTime(date));
-                    }
-                })
-
-                        .setLineSpacingMultiplier(1.8F)
-                        .setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
-                        .setLabel("","","",null,null,null)//默认设置为年月日时分秒
-                        .build();
-                pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
-                pvTime.show();
-
-
-
-//                Calendar selectedDate = Calendar.getInstance();
-//                Calendar startDate = Calendar.getInstance();
-//                //startDate.set(2013,1,1);
-//                Calendar endDate = Calendar.getInstance();
-//                //endDate.set(2020,1,1);
-//
-//                //正确设置方式 原因：注意事项有说明
-//                startDate.set(2013,0,1);
-//                endDate.set(2020,11,31);
-//
-//                TimePickerView pvTime = new TimePickerView.Builder(HetongActivity.this, new TimePickerView.OnTimeSelectListener() {
-//                    @Override
-//                    public void onTimeSelect(Date date,View v) {//选中事件回调
-////                        tvTime.setText(getTime(date));
-//                    }
-//                })
-//                        .setType(new boolean[]{true, true, true, true, true, true})// 默认全部显示
-//                        .setCancelText("Cancel")//取消按钮文字
-//                        .setSubmitText("Sure")//确认按钮文字
-//                        .setContentSize(18)//滚轮文字大小
-//                        .setTitleSize(20)//标题文字大小
-//                        .setTitleText("Title")//标题文字
-//                        .setOutSideCancelable(false)//点击屏幕，点在控件外部范围时，是否取消显示
-//                        .isCyclic(true)//是否循环滚动
-//                        .setTitleColor(Color.BLACK)//标题文字颜色
-//                        .setSubmitColor(Color.BLUE)//确定按钮文字颜色
-//                        .setCancelColor(Color.BLUE)//取消按钮文字颜色
-//                        .setTitleBgColor(0xFF666666)//标题背景颜色 Night mode
-//                        .setBgColor(0xFF333333)//滚轮背景颜色 Night mode
-//                        .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
-//                        .setRangDate(startDate,endDate)//起始终止年月日设定
-//                        .setLabel("年","月","日","时","分","秒")//默认设置为年月日时分秒
-//                        .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-//                        .isDialog(true)//是否显示为对话框样式
-//                        .build();
-//
-//                pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
-//                pvTime.show();
-
-
             }
-        });
+        })
+
+                .setLineSpacingMultiplier(1.8F)
+                .setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
+                .setLabel("","","",null,null,null)//默认设置为年月日时分秒
+                .build();
+        pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
+        pvTime.show();
     }
 
     @Override
@@ -176,20 +139,16 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
 
 
     private void showPop(View view) {
+
+        View upView = LayoutInflater.from(this).inflate(R.layout.view_flexlayout, null);
+        CommonUtil.measureWidthAndHeight(upView);
         CommonPopupWindow popupWindow = new CommonPopupWindow.Builder(this)
                 //设置PopupWindow布局
                 .setView(R.layout.view_flexlayout)
                 //设置宽高
-                .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT)
-                //设置动画
-                .setAnimationStyle(R.style.AnimDown)
-                //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
-                .setBackGroundLevel(0.5f)
-
-                //设置外部是否可点击 默认是true
-                .setOutsideTouchable(true)
-                //开始构建
+                .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, upView.getMeasuredHeight())
+                .setBackGroundLevel(0.5f)//取值范围0.0f-1.0f 值越小越暗
+                .setAnimationStyle(R.style.AnimUp)
                 .create();
 
 
@@ -243,6 +202,28 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
         });
 
 
-        popupWindow.showAsDropDown(view);
+        popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.BOTTOM, 0, 0);
+    }
+
+    /**
+     * 点击事件
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.incidentals_add:
+                showPop(view);
+                break;
+            case R.id.contract_start_time:
+                showTime();
+                break;
+            case R.id.contract_end_time:
+                showTime();
+                break;
+            default:
+                break;
+        }
     }
 }
