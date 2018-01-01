@@ -33,7 +33,7 @@
             />
 
 
-        <cn.com.example.haitu.BadgeView
+        <cn.com.example.haitu.ui.widgets.BadgeView
             android:id="@+id/bv_one5"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                     android:orientation="horizontal"
                     >
 
-                    <cn.com.example.haitu.BadgeView
+                    <cn.com.example.haitu.ui.widgets.BadgeView
                         android:id="@+id/bv_one"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                         app:badgeTextSize="15sp"
                         />
 
-                    <cn.com.example.haitu.BadgeView
+                    <cn.com.example.haitu.ui.widgets.BadgeView
                         android:id="@+id/bv_one2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                         app:badgeTextSize="15sp"
                         />
 
-                    <cn.com.example.haitu.BadgeView
+                    <cn.com.example.haitu.ui.widgets.BadgeView
                         android:id="@+id/bv_one3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                         app:badgeTextSize="15sp"
                         />
 
-                    <cn.com.example.haitu.BadgeView
+                    <cn.com.example.haitu.ui.widgets.BadgeView
                         android:id="@+id/bv_one4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package cn.com.example.haitu;
+package cn.com.example.haitu.ui.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.zyw.horrarndoo.sdk.utils.DisplayUtils;
 
+import cn.com.example.haitu.R;
+
 /**
- * 作者：${牛毅}
- * 时间：2017/02/28 14：57
- * 邮箱：niuyi19900923@gmail.com
+ *
  * 描述：自定义带有角标小红点数字的View
  */
 public class BadgeView extends RelativeLayout {

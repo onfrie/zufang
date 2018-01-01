@@ -48,14 +48,12 @@ public class MainActivity extends BaseCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        // Ĭ���ȵ��е�һ������ҳ��
         clickMenu(findViewById(R.id.ll_menu_home));
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
         initViews();
-        // Ĭ���ȵ��е�һ������ҳ��
         clickMenu(findViewById(R.id.ll_menu_home));
     }
 
