@@ -63,19 +63,22 @@
 
     <ImageView
         android:id="@+id/sing_iv"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/sing_ll"
+        android:layout_marginLeft="@dimen/dp_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/single_item_h"
         />
 
     <ImageView
+        android:id="@+id/sing_icn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/sing_iv"
-
+        android:layout_alignRight="@+id/sing_iv"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
         android:src="@mipmap/single_yuan"
         />
 

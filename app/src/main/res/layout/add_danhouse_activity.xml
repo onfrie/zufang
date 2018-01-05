@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"/>
+
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="户型"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/sp_15"
+        android:padding="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_20"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+        <EditText
+            android:padding="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/huxing_backgrund"
+            />
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室"
+            android:padding="@dimen/dp_10"
+            android:textSize="@dimen/sp_12"
+            />
+        <EditText
+            android:padding="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/huxing_backgrund"
+            />
+        <TextView
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室"
+            android:textSize="@dimen/sp_12"
+            />
+        <EditText
+            android:padding="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/huxing_backgrund"
+            />
+        <TextView
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室"
+            android:textSize="@dimen/sp_12"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="公共设施"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/sp_15"
+        android:padding="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_20"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="列表占位"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="房管员"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_15"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认当前用户"
+            android:textColor="@color/text_colors"
+            android:textSize="@dimen/sp_15"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/title_right"
+            />
+    </LinearLayout>
+</LinearLayout>
