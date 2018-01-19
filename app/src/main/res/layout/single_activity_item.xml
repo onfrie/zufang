@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_margin="14dp"
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
+    android:layout_centerHorizontal="true"
     >
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/single_item"
         android:gravity="center_vertical"
@@ -63,10 +64,11 @@
 
     <ImageView
         android:id="@+id/sing_iv"
-        android:layout_toRightOf="@+id/sing_ll"
-        android:layout_marginLeft="@dimen/dp_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/sing_ll"
+        android:layout_toRightOf="@+id/sing_ll"
         android:src="@mipmap/single_item_h"
         />
 

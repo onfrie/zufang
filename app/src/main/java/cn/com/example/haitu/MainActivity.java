@@ -25,20 +25,12 @@ public class MainActivity extends BaseCompatActivity {
     private FragmentHot fragment_hot;
     private FragmentTalk fragment_talk;
     private FragmentMe fragment_me;
-
-
     private ImageView iv_menu_home;
     private TextView tv_menu_home;
-
-
     private ImageView iv_menu_hot;
     private TextView tv_menu_hot;
-
-
     private ImageView iv_menu_talk;
     private TextView tv_menu_talk;
-
-
     private ImageView iv_menu_me;
     private TextView tv_menu_me;
     private ImageView mIv_center;
