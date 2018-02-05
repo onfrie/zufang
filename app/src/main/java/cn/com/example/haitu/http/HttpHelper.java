@@ -20,8 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HttpHelper {
-    public final static String DOMAIN_SIT = "https://app.aoren.com/";
-    public final static String DOMAIN_UAT = "https://weixinten.com/";
+    public final static String DOMAIN_SIT = "http://106.14.96.37/";
+    public final static String DOMAIN_UAT = "http://106.14.96.37/";
     public final static String DOMAIN = false ? DOMAIN_UAT : DOMAIN_SIT;
 
     public final static String DOMAIN_H5_SIT = "https://wxin-xhed.ren.com/";

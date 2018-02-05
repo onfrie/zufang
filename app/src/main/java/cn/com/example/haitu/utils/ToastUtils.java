@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import app.hrhx.android.com.haoren.application.MyApp;
+import cn.com.example.haitu.MyApp;
 
 
 /**

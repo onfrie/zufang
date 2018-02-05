@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import app.hrhx.android.com.haoren.R;
+import cn.com.example.haitu.R;
 
 /**
  * @author zoutongbin

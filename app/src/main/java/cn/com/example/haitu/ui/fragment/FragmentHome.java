@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.zyw.horrarndoo.sdk.base.fragment.BaseCompatFragment;
 
 import cn.com.example.haitu.R;
-import cn.com.example.haitu.ui.activity.HetongActivity;
+import cn.com.example.haitu.activity.CommonAreaActivity;
 
 public class FragmentHome extends BaseCompatFragment {
 
@@ -27,7 +27,7 @@ public class FragmentHome extends BaseCompatFragment {
 		mHomeZuke.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(getContext(), HetongActivity.class));
+				startActivity(new Intent(getContext(), CommonAreaActivity.class));
 			}
 		});
 	}

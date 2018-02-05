@@ -1,7 +1,9 @@
 package cn.com.example.haitu.http;
 
+import cn.com.example.haitu.model.CityListRes;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -18,5 +20,9 @@ public interface ApiService {
      */
     @GET("rest/bill/platform/{type}")
     Call<Object> getBillPlatform(@Path("type") int type);
+
+
+    @POST("api/BaseData/QueryCity")
+    Call<CityListRes> postCityList();
 
 }

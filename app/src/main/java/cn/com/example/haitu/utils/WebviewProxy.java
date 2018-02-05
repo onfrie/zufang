@@ -1,26 +1,15 @@
 package cn.com.example.haitu.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Proxy;
 import android.os.Build;
 import android.util.ArrayMap;
 import android.util.Log;
-import android.view.Display;
-import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
-
-import com.token.verifysdk.VerifyCoder;
 
 import org.apache.http.HttpHost;
-import org.json.JSONObject;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -30,8 +19,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
-import app.hrhx.android.com.haoren.R;
-import app.hrhx.android.com.haoren.base.BaseActivity;
 
 /**
  * Created by zenghui on 2017/11/6.
@@ -476,79 +463,6 @@ public class WebviewProxy {
         return result;
     }
 
-
-    public static void showProxyDialog(final com.tencent.smtt.sdk.WebView webView, JSONObject jsonObject, boolean cancel) {
-
-        Context context = webView.getContext();
-        final Dialog dialog = new Dialog(webView.getContext(), R.style.MyDialog);
-        dialog.setContentView(R.layout.dialog_webview);
-        FrameLayout rootView = (FrameLayout) dialog.findViewById(R.id.rootView);
-        Window window = dialog.getWindow();
-        Display display = ((BaseActivity)context).getWindowManager().getDefaultDisplay();
-        // 设置显示动画
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.x = 0;
-        wl.y = display.getHeight();
-        // 以下这两句是为了保证按钮可以水平满屏
-        wl.width = display.getWidth();
-        wl.height = display.getHeight();
-
-        // 设置显示位置
-        dialog.onWindowAttributesChanged(wl);
-
-
-        IVerifyCoder.VerifyListener listener = new IVerifyCoder.VerifyListener() {
-            public void onVerifySucc(String ticket, String randstr) {
-                ToastUtils.showLongToast("成功");
-                webView.loadUrl("javascript:onQclundAction('" + ticket + "')");
-                dialog.dismiss();
-            }
-
-            public void onVerifyFail() {
-                ToastUtils.showLongToast("失败");
-                webView.loadUrl("javascript:onQclundAction('failed')");
-                dialog.dismiss();
-
-            }
-        };
-
-        final WebView mWebView = IVerifyCoder.getVerifyCoder().getWebView(webView.getContext(), jsonObject.optString("url"),jsonObject.optString("ip"),jsonObject.optInt("port"),"com.hrhx.android.app.application.MyApp", listener);
-
-        mWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-                Log.d("shoul url ============>",url);
-                return true;
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                Log.d("Fini url ============>",url);
-            }
-        });
-        mWebView.requestFocus();
-        mWebView.forceLayout();
-
-        rootView.addView(mWebView);
-
-        dialog.setCancelable(cancel);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                WebviewProxy.revertBackProxy(mWebView,"com.hrhx.android.app.application.MyApp");
-                VerifyCoder.getVerifyCoder().release();
-            }
-        });
-    }
 
 
 }
