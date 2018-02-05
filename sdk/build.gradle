@@ -67,7 +67,7 @@ dependencies {
 
     //Butterknife
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //fragmentation
     compile "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
 
