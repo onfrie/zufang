@@ -1,4 +1,4 @@
-package cn.com.example.haitu.activity.interfaces;
+package cn.com.example.haitu.interfaces;
 
 /**
  * Created by Dell on 2018/2/5.

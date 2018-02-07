@@ -20,6 +20,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/ll_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
@@ -197,6 +198,19 @@
                     android:src="@drawable/title_right"
                     />
             </LinearLayout>
+
+            <GridView
+                android:verticalSpacing="@dimen/dp_6"
+                android:horizontalSpacing="@dimen/dp_6"
+                android:layout_margin="@dimen/dp_6"
+                android:id="@+id/gv_floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_6"
+                android:gravity="center"
+                android:numColumns="4">
+            </GridView>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

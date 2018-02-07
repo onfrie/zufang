@@ -1,4 +1,4 @@
-package cn.com.example.haitu.model;
+package cn.com.example.haitu.model.res;
 
 import java.util.List;
 

@@ -1,7 +1,10 @@
 package cn.com.example.haitu.http;
 
-import cn.com.example.haitu.model.CityListRes;
+import cn.com.example.haitu.model.req.BaseDataQueryReq;
+import cn.com.example.haitu.model.res.BaseDataQueryRes;
+import cn.com.example.haitu.model.res.CityListRes;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -24,5 +27,8 @@ public interface ApiService {
 
     @POST("api/BaseData/QueryCity")
     Call<CityListRes> postCityList();
+
+    @POST("api/BaseData/Query")
+    Call<BaseDataQueryRes> postBaseDataQuery(@Body BaseDataQueryReq baseDataQueryReq);
 
 }

@@ -13,13 +13,38 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import cn.com.example.haitu.R;
-import cn.com.example.haitu.activity.interfaces.DialogListener;
+import cn.com.example.haitu.interfaces.DialogListener;
+import cn.com.example.haitu.view.CashbusDialog;
 
 /**
  * Created by zenghui on 15/11/13.
  * wangfeng 添加注释
  */
 public class DialogUtils {
+
+    public static CashbusDialog cashbusDialog;
+    //获取中,定位中
+
+    public static void showLoading(Context context, String content) {
+        if (cashbusDialog != null && cashbusDialog.isShowing()) {
+            return;
+        }
+        cashbusDialog = new CashbusDialog(context, content);
+        cashbusDialog.setCancelable(false);
+        try {
+            cashbusDialog.show();
+        } catch (Exception e) {
+        }
+    }
+
+    public static void dismissLoading() {
+        if (cashbusDialog != null && cashbusDialog.isShowing()) {
+            try {
+                cashbusDialog.dismiss();
+            } catch (Exception e) {
+            }
+        }
+    }
 
     public static void showSelectDialog(Context context, String title, final String[] items, final DialogListener handleDialogListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

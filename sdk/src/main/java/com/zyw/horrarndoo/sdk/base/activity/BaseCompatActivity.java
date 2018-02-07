@@ -11,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 import com.zyw.horrarndoo.sdk.AppManager;
 import com.zyw.horrarndoo.sdk.R;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
-import com.zyw.horrarndoo.sdk.utils.AppUtils;
 import com.zyw.horrarndoo.sdk.utils.SpUtils;
 import com.zyw.horrarndoo.sdk.utils.ThemeUtils;
 import com.zyw.horrarndoo.sdk.widgets.WaitPorgressDialog;
@@ -78,7 +77,7 @@ public abstract class BaseCompatActivity extends SupportActivity {
      * 子类可以复写此方法初始化子类数据
      */
     protected void initData() {
-        mContext = AppUtils.getContext();
+        mContext = this;
         mApplication = (GlobalApplication) getApplication();
         mWaitPorgressDialog = new WaitPorgressDialog(this);
         isTransAnim = true;
