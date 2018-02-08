@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.com.example.haitu.R;
 import cn.com.example.haitu.flexbox.interfaces.OnFlexboxSubscribeListener;
 import cn.com.example.haitu.flexbox.widget.TagFlowLayout;
@@ -38,7 +41,7 @@ import retrofit2.Call;
 
 public class CommonAreaActivity extends BaseCompatActivity {
 
-//    @BindView(R.id.title_left)
+    //    @BindView(R.id.title_left)
 //    ImageView titleLeft;
 //    @BindView(R.id.title_text)
 //    TextView titleText;
@@ -46,12 +49,20 @@ public class CommonAreaActivity extends BaseCompatActivity {
 //    ImageView titleMenu;
 //    @BindView(R.id.ll_city)
 //    LinearLayout llCity;
-//    @BindView(R.id.adress_text)
+    //    @BindView(R.id.adress_text)
 //    TextView adressText;
 //    @BindView(R.id.ll_features)
 //    LinearLayout llFeatures;
     @BindView(R.id.gv_floor)
     GridView gvFloor;
+    @BindView(R.id.title_text)
+    TextView mTitleText;
+    @BindView(R.id.title_menu)
+    ImageView mTitleMenu;
+    @BindView(R.id.ll_city)
+    LinearLayout mLlCity;
+    @BindView(R.id.commonArea_city_tv)
+    TextView mCommonAreaCityTv;
     private List<BaseDataQueryRes.NumberDataBean.CityBean> mCity;
 
     int floorInt = 11;
@@ -75,18 +86,18 @@ public class CommonAreaActivity extends BaseCompatActivity {
         //新建List
         ArrayList<Map<String, String>> floorList = new ArrayList<>();
         HashMap<String, String> stringStringHashMap = new HashMap<>();
-        stringStringHashMap.put("text" , "地下室");
+        stringStringHashMap.put("text", "地下室");
         floorList.add(stringStringHashMap);
         //获取数据
         for (int i = 1; i <= floorInt; i++) {
 
-        Map<String, String> map = new HashMap<>();
-        map.put("text", i + "楼");
-        floorList.add(map);
+            Map<String, String> map = new HashMap<>();
+            map.put("text", i + "楼");
+            floorList.add(map);
         }
         //新建适配器
-        String [] from ={"image","text"};
-        int [] to = {R.id.image,R.id.text};
+        String[] from = {"image", "text"};
+        int[] to = {R.id.image, R.id.text};
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, floorList, R.layout.item_grid, from, to);
         //配置适配器
         gvFloor.setAdapter(simpleAdapter);
@@ -102,20 +113,20 @@ public class CommonAreaActivity extends BaseCompatActivity {
         });
     }
 
-//    @OnClick({R.id.title_menu, R.id.ll_city, R.id.ll_features})
-//    public void onViewClicked(View view) {
-//        switch (view.getId()) {
-//            case R.id.ll_city:
-//                resCity();
-//                break;
+    @OnClick({R.id.title_menu, R.id.ll_city})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_city:
+                resCity();
+                break;
 //            case R.id.ll_features:
 //                showPop(view);
 //                resBaseDataQuery();
 //                break;
-//            default:
-//                break;
-//        }
-//    }
+            default:
+                break;
+        }
+    }
 
     private void showPop(View view) {
 
@@ -190,10 +201,10 @@ public class CommonAreaActivity extends BaseCompatActivity {
         for (BaseDataQueryRes.NumberDataBean.CityBean numberDataBean : mCity) {
             cityList.add(numberDataBean.getRegionName());
         }
-        DialogUtils.showSelectDialog(CommonAreaActivity.this, "银行", cityList.toArray(new String[cityList.size()]), new DialogListener() {
+        DialogUtils.showSelectDialog(CommonAreaActivity.this, "城市", cityList.toArray(new String[cityList.size()]), new DialogListener() {
             @Override
             public void handle(String text) {
-//                titleText.setText(text);
+                mCommonAreaCityTv.setText(text);
 //                        lightBtn();
             }
         });
@@ -209,7 +220,7 @@ public class CommonAreaActivity extends BaseCompatActivity {
             @Override
             public void onSuccess(BaseDataQueryRes result) {
                 DialogUtils.dismissLoading();
-//                mCity = result.getNumberData().getCity();
+                mCity = result.getNumberData().getCity();
             }
 
             @Override
