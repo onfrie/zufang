@@ -66,6 +66,7 @@ public class CommonAreaActivity extends BaseCompatActivity {
     private List<BaseDataQueryRes.NumberDataBean.CityBean> mCity;
 
     int floorInt = 11;
+    private ArrayList<Boolean> mFloorSelect;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -85,15 +86,17 @@ public class CommonAreaActivity extends BaseCompatActivity {
 
         //新建List
         ArrayList<Map<String, String>> floorList = new ArrayList<>();
+        mFloorSelect = new ArrayList<>();
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         stringStringHashMap.put("text", "地下室");
         floorList.add(stringStringHashMap);
         //获取数据
         for (int i = 1; i <= floorInt; i++) {
-
-            Map<String, String> map = new HashMap<>();
-            map.put("text", i + "楼");
-            floorList.add(map);
+            
+        Map<String, String> map = new HashMap<>();
+        map.put("text", i + "楼");
+        floorList.add(map);
+            mFloorSelect.add(false);
         }
         //新建适配器
         String[] from = {"image", "text"};
@@ -108,6 +111,7 @@ public class CommonAreaActivity extends BaseCompatActivity {
 //                view.setBackgroundResource(R.color.bk_green);
                 TextView text = ((TextView) view.findViewById(R.id.text));
                 text.setSelected(!text.isSelected());
+                mFloorSelect.add(text.isSelected());
                 ToastUtils.showToast(i + "楼");
             }
         });
