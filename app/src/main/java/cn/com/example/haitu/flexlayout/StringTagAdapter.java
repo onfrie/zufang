@@ -61,7 +61,7 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
         TextView textView = tagView.getTextView();
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         textView.setGravity(Gravity.CENTER);
-
+//        textView.setWidth(200);
         tagView.setItemDefaultDrawable(itemDefaultDrawable);
         tagView.setItemSelectDrawable(itemSelectDrawable);
         tagView.setItemDefaultTextColor(itemDefaultTextColor);

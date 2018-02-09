@@ -1,30 +1,29 @@
 package cn.com.example.haitu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zyw.horrarndoo.sdk.base.activity.BaseCompatActivity;
-import com.zyw.horrarndoo.sdk.utils.LogUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.com.example.haitu.R;
+import cn.com.example.haitu.adapter.FloorAdapter;
 import cn.com.example.haitu.flexbox.interfaces.OnFlexboxSubscribeListener;
 import cn.com.example.haitu.flexbox.widget.TagFlowLayout;
 import cn.com.example.haitu.flexlayout.StringTagAdapter;
@@ -33,6 +32,8 @@ import cn.com.example.haitu.http.HttpHelper;
 import cn.com.example.haitu.interfaces.DialogListener;
 import cn.com.example.haitu.model.req.BaseDataQueryReq;
 import cn.com.example.haitu.model.res.BaseDataQueryRes;
+import cn.com.example.haitu.model.res.FloorRes;
+import cn.com.example.haitu.ui.activity.CommonFacilityActivity;
 import cn.com.example.haitu.ui.widgets.PopupWindow.CommonPopupWindow;
 import cn.com.example.haitu.utils.CommonUtil;
 import cn.com.example.haitu.utils.DialogUtils;
@@ -53,8 +54,6 @@ public class CommonAreaActivity extends BaseCompatActivity {
 //    TextView adressText;
 //    @BindView(R.id.ll_features)
 //    LinearLayout llFeatures;
-    @BindView(R.id.gv_floor)
-    GridView gvFloor;
     @BindView(R.id.title_text)
     TextView mTitleText;
     @BindView(R.id.title_menu)
@@ -63,10 +62,15 @@ public class CommonAreaActivity extends BaseCompatActivity {
     LinearLayout mLlCity;
     @BindView(R.id.commonArea_city_tv)
     TextView mCommonAreaCityTv;
-    private List<BaseDataQueryRes.NumberDataBean.CityBean> mCity;
+    @BindView(R.id.ll_view)
+    LinearLayout llView;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
-    int floorInt = 11;
-    private ArrayList<Boolean> mFloorSelect;
+    private List<BaseDataQueryRes.NumberDataBean.CityBean> mCity;
+    private BaseDataQueryRes mBaseDataQueryRes;
+    FloorAdapter mFloorAdapter;
+    private ArrayList<FloorRes> mFloorList;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -81,47 +85,57 @@ public class CommonAreaActivity extends BaseCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
         resBaseDataQuery();
+        initDatas(10);
+        initAdapter();
 
-        //新建List
-        ArrayList<Map<String, String>> floorList = new ArrayList<>();
-        mFloorSelect = new ArrayList<>();
-        HashMap<String, String> stringStringHashMap = new HashMap<>();
-        stringStringHashMap.put("text", "地下室");
-        floorList.add(stringStringHashMap);
-        //获取数据
-        for (int i = 1; i <= floorInt; i++) {
-            
-        Map<String, String> map = new HashMap<>();
-        map.put("text", i + "楼");
-        floorList.add(map);
-            mFloorSelect.add(false);
+    }
+
+    private void initDatas(int floor) {
+        mFloorList = new ArrayList<>();
+        for (int i = 0; i <= floor; i++) {
+            FloorRes floorRes = new FloorRes();
+            if (i == 0) {
+                floorRes.setFloor("地下室");
+            }else{
+                floorRes.setFloor(i + "楼");
+            }
+            floorRes.setSelect(true);
+            mFloorList.add(floorRes);
         }
-        //新建适配器
-        String[] from = {"image", "text"};
-        int[] to = {R.id.image, R.id.text};
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, floorList, R.layout.item_grid, from, to);
-        //配置适配器
-        gvFloor.setAdapter(simpleAdapter);
-        gvFloor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    }
+
+    private void initAdapter() {
+        mFloorAdapter = new FloorAdapter(R.layout.item_grid, mFloorList);
+        recyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
+        recyclerView.setAdapter(mFloorAdapter);
+        mFloorAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                LogUtils.e("onItemClick");
-//                view.setBackgroundResource(R.color.bk_green);
-                TextView text = ((TextView) view.findViewById(R.id.text));
-                text.setSelected(!text.isSelected());
-                mFloorSelect.add(text.isSelected());
-                ToastUtils.showToast(i + "楼");
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                TextView tv = (TextView) view.findViewById(R.id.text);
+                tv.setSelected(!tv.isSelected());
+                mFloorList.get(position).setSelect(tv.isSelected());
+                String s = "";
+                for (FloorRes floorRes : mFloorList) {
+                    s = s +  floorRes.toString();
+                }
+                ToastUtils.showToast(s + "");
             }
         });
     }
 
-    @OnClick({R.id.title_menu, R.id.ll_city})
+    @OnClick({R.id.title_menu, R.id.ll_city, R.id.commmon_area_next})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_city:
-                resCity();
+//                resCity();
+                showPop(view);
+                break;
+            case R.id.commmon_area_next:
+                List<BaseDataQueryRes.NumberDataBean.PeipeiBean> peipei = mBaseDataQueryRes.getNumberData().getPeipei();
+                Intent intent = new Intent(mContext, CommonFacilityActivity.class);
+                intent.putParcelableArrayListExtra("peipei", (ArrayList<? extends Parcelable>) peipei);
+                startActivity(intent);
                 break;
 //            case R.id.ll_features:
 //                showPop(view);
@@ -224,6 +238,7 @@ public class CommonAreaActivity extends BaseCompatActivity {
             @Override
             public void onSuccess(BaseDataQueryRes result) {
                 DialogUtils.dismissLoading();
+                mBaseDataQueryRes = result;
                 mCity = result.getNumberData().getCity();
             }
 

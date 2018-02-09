@@ -28,7 +28,15 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"
             />
-        <activity android:name=".activity.CommonAreaActivity">
+        <activity android:name=".activity.CommonAreaActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden|adjustResize"
+            >
+        </activity>
+        <activity android:name=".ui.activity.CommonFacilityActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden|adjustPan"
+            >
         </activity>
     </application>
 

@@ -200,18 +200,20 @@
                     />
             </LinearLayout>
 
-            <GridView
-                android:verticalSpacing="@dimen/dp_6"
-                android:horizontalSpacing="@dimen/dp_6"
-                android:layout_margin="@dimen/dp_6"
-                android:id="@+id/gv_floor"
+            <LinearLayout
+                android:id="@+id/ll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_6"
-                android:gravity="center"
-                android:numColumns="4">
-            </GridView>
+                >
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -246,15 +248,17 @@
                     />
             </LinearLayout>
         </LinearLayout>
+
         <TextView
-            android:layout_alignParentBottom="true"
+            android:id="@+id/commmon_area_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:background="@color/colorPrimary"
-            android:textColor="@color/white"
-            android:text="下一步"
             android:gravity="center"
             android:padding="@dimen/dp_16"
+            android:text="下一步"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_15"
             />
     </RelativeLayout>
