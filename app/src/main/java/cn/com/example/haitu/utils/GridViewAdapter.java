@@ -90,7 +90,7 @@ public class GridViewAdapter extends BaseAdapter {
 
         if (isShowAddItem(position)) {
 //            Glide.with(mContext).load(R.drawable.btn_add_pic).asBitmap().into(holder.iv);
-			holder.iv.setImageResource(R.drawable.ic_addition);
+			holder.iv.setImageResource(R.drawable.add_pic);
 //			holder.iv.setBackgroundResource(R.color.bg_gray);
 
         } else {

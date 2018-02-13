@@ -1,10 +1,13 @@
 package cn.com.example.haitu.utils;
 
+import android.app.Activity;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -61,5 +64,50 @@ public class AppUtil {
         }else{
             return false;
         }
+    }
+
+    /**
+     * 打开键盘.
+     *
+     * @param context the context
+     */
+    public static void showSoftInput(Context context) {
+        InputMethodManager inputMethodManager = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 关闭键盘事件.
+     *
+     * @param context the context
+     */
+    public static void closeSoftInput(Context context) {
+        InputMethodManager inputMethodManager = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null && ((Activity) context).getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(((Activity) context).getCurrentFocus()
+                    .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    /**
+     * 打开键盘.
+     *
+     * @param context the context
+     */
+    public static void showSoftInput(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+    }
+
+    /**
+     * 关闭键盘事件.
+     *
+     * @param context the context
+     */
+    public static void closeSoftInput(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
     }
 }

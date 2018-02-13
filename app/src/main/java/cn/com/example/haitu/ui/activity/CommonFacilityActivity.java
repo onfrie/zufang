@@ -1,6 +1,8 @@
 package cn.com.example.haitu.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +43,12 @@ public class CommonFacilityActivity extends BaseCompatActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        banner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CommonFacilityActivity.this,PhotoActivity.class));
+            }
+        });
         mPeipei = getIntent().getParcelableArrayListExtra("peipei");
 
         floorInt = mPeipei.size();
@@ -51,15 +59,15 @@ public class CommonFacilityActivity extends BaseCompatActivity {
         }
 
         List<String> selectItems = new ArrayList<>();
-        selectItems.add("客户代表");
-        selectItems.add("Java工程师");
+//        selectItems.add("客户代表");
+//        selectItems.add("Java工程师");
 
 
         final StringTagAdapter adapter = new StringTagAdapter(mContext, sourceData, selectItems);
         adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
             @Override
             public void onSubscribe(List<String> selectedItem) {
-                ToastUtils.showToast("已选择" + selectedItem.size() + "个");
+//                ToastUtils.showToast("已选择" + selectedItem.size() + "个");
             }
         });
         llDevice.setAdapter(adapter);

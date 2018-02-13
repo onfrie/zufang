@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,29 +32,19 @@ import cn.com.example.haitu.http.ApiCallBack;
 import cn.com.example.haitu.http.HttpHelper;
 import cn.com.example.haitu.interfaces.DialogListener;
 import cn.com.example.haitu.model.req.BaseDataQueryReq;
+import cn.com.example.haitu.model.req.SaveHouseReq;
 import cn.com.example.haitu.model.res.BaseDataQueryRes;
 import cn.com.example.haitu.model.res.FloorRes;
 import cn.com.example.haitu.ui.activity.CommonFacilityActivity;
 import cn.com.example.haitu.ui.widgets.PopupWindow.CommonPopupWindow;
+import cn.com.example.haitu.utils.AppUtil;
 import cn.com.example.haitu.utils.CommonUtil;
 import cn.com.example.haitu.utils.DialogUtils;
 import cn.com.example.haitu.utils.ToastUtils;
 import retrofit2.Call;
 
-public class CommonAreaActivity extends BaseCompatActivity {
+public class CommonAreaActivity extends BaseCompatActivity implements View.OnClickListener {
 
-    //    @BindView(R.id.title_left)
-//    ImageView titleLeft;
-//    @BindView(R.id.title_text)
-//    TextView titleText;
-//    @BindView(R.id.title_menu)
-//    ImageView titleMenu;
-//    @BindView(R.id.ll_city)
-//    LinearLayout llCity;
-    //    @BindView(R.id.adress_text)
-//    TextView adressText;
-//    @BindView(R.id.ll_features)
-//    LinearLayout llFeatures;
     @BindView(R.id.title_text)
     TextView mTitleText;
     @BindView(R.id.title_menu)
@@ -66,14 +57,34 @@ public class CommonAreaActivity extends BaseCompatActivity {
     LinearLayout llView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.ll_title)
+    LinearLayout mLlTitle;
+    @BindView(R.id.shangquan_text)
+    TextView mShangquanText;
+    @BindView(R.id.adress_text)
+    TextView mAdressText;
+    @BindView(R.id.add_house_tvfloor)
+    TextView mAddHouseTvfloor;
+    @BindView(R.id.add_house_floor)
+    LinearLayout mAddHouseFloor;
+    @BindView(R.id.commmon_area_next)
+    TextView mCommmonAreaNext;
 
     private List<BaseDataQueryRes.NumberDataBean.CityBean> mCity;
     private BaseDataQueryRes mBaseDataQueryRes;
     FloorAdapter mFloorAdapter;
     private ArrayList<FloorRes> mFloorList;
+    private EditText mAddFloorAll;
+    private EditText mAddFloorNum;
+    private SaveHouseReq mSaveHouseReq;
+    private CommonPopupWindow mPopupWindow;
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        mSaveHouseReq = new SaveHouseReq();
+        resBaseDataQuery();
+        //        initDatas(10);
+        initAdapter();
     }
 
     @Override
@@ -81,15 +92,15 @@ public class CommonAreaActivity extends BaseCompatActivity {
         return R.layout.add_house_activity;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        resBaseDataQuery();
-        initDatas(10);
-        initAdapter();
-
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        // TODO: add setContentView(...) invocation
+//        resBaseDataQuery();
+////        initDatas(10);
+//        initAdapter();
+//
+//    }
 
     private void initDatas(int floor) {
         mFloorList = new ArrayList<>();
@@ -97,7 +108,7 @@ public class CommonAreaActivity extends BaseCompatActivity {
             FloorRes floorRes = new FloorRes();
             if (i == 0) {
                 floorRes.setFloor("地下室");
-            }else{
+            } else {
                 floorRes.setFloor(i + "楼");
             }
             floorRes.setSelect(true);
@@ -117,30 +128,34 @@ public class CommonAreaActivity extends BaseCompatActivity {
                 mFloorList.get(position).setSelect(tv.isSelected());
                 String s = "";
                 for (FloorRes floorRes : mFloorList) {
-                    s = s +  floorRes.toString();
+                    s = s + floorRes.toString();
                 }
                 ToastUtils.showToast(s + "");
             }
         });
     }
 
-    @OnClick({R.id.title_menu, R.id.ll_city, R.id.commmon_area_next})
+    @OnClick({R.id.title_menu, R.id.ll_city, R.id.commmon_area_next, R.id.add_house_floor})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_city:
-//                resCity();
-                showPop(view);
+                resCity();
+//                showPop(view);
                 break;
             case R.id.commmon_area_next:
                 List<BaseDataQueryRes.NumberDataBean.PeipeiBean> peipei = mBaseDataQueryRes.getNumberData().getPeipei();
                 Intent intent = new Intent(mContext, CommonFacilityActivity.class);
                 intent.putParcelableArrayListExtra("peipei", (ArrayList<? extends Parcelable>) peipei);
+                intent.putExtra("bean", mSaveHouseReq);
                 startActivity(intent);
                 break;
 //            case R.id.ll_features:
 //                showPop(view);
 //                resBaseDataQuery();
 //                break;
+            case R.id.add_house_floor:
+                showFloorPop();
+                break;
             default:
                 break;
         }
@@ -223,6 +238,14 @@ public class CommonAreaActivity extends BaseCompatActivity {
             @Override
             public void handle(String text) {
                 mCommonAreaCityTv.setText(text);
+                for (BaseDataQueryRes.NumberDataBean.CityBean numberDataBean : mCity) {
+                    if (numberDataBean.getRegionName().equals(text)){
+                        mSaveHouseReq.setCity(String.valueOf(numberDataBean.getId()));
+                        ToastUtils.showToast(String.valueOf(numberDataBean.getId()));
+                    }
+                }
+
+                mSaveHouseReq.setCityName(text);
 //                        lightBtn();
             }
         });
@@ -250,6 +273,55 @@ public class CommonAreaActivity extends BaseCompatActivity {
         });
     }
 
+    private void showFloorPop() {
+
+        View upView = LayoutInflater.from(this).inflate(R.layout.view_flexlayout, null);
+        CommonUtil.measureWidthAndHeight(upView);
+        mPopupWindow = new CommonPopupWindow.Builder(this)
+                //设置PopupWindow布局
+                .setView(R.layout.view_add_floor)
+                //设置宽高
+                .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                .setBackGroundLevel(0.5f)//取值范围0.0f-1.0f 值越小越暗
+                .setAnimationStyle(R.style.AnimUp)
+                .create();
+
+
+        View contentView = mPopupWindow.getContentView();
+        contentView.findViewById(R.id.add_floor_save).setOnClickListener(this);
+        contentView.findViewById(R.id.add_floor_back).setOnClickListener(this);
+        mAddFloorAll = (EditText) contentView.findViewById(R.id.add_floor_all);
+        AppUtil.showSoftInput(this);
+        mAddFloorNum = (EditText) contentView.findViewById(R.id.add_floor_num);
+        mPopupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.CENTER, 0, 0);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.add_floor_save:
+                if (!mAddFloorAll.getText().toString().isEmpty()){
+                    mSaveHouseReq.setAllFloor(String.valueOf(mAddFloorAll.getText()));
+                }else {
+                    ToastUtils.showToast("请输入总楼层");
+                    return;
+                }
+
+                if (!mAddFloorNum.getText().toString().isEmpty()){
+                    mSaveHouseReq.setNowFloor(String.valueOf(mAddFloorNum.getText()));
+                }else {
+                    ToastUtils.showToast("请输入当前楼层");
+                    return;
+                }
+                mAddHouseTvfloor.setText(String.valueOf(mAddFloorNum.getText())+"/"+String.valueOf(mAddFloorAll.getText()));
+                mPopupWindow.dismiss();
+                break;
+            case R.id.add_floor_back:
+                mPopupWindow.dismiss();
+                break;
+        }
+    }
 }
 
 

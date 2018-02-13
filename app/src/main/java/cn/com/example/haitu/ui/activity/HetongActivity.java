@@ -94,7 +94,7 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
 
                 .setLineSpacingMultiplier(1.8F)
                 .setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
-                .setLabel("","","",null,null,null)//默认设置为年月日时分秒
+                .setLabel("", "", "", null, null, null)//默认设置为年月日时分秒
                 .build();
         pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
         pvTime.show();
@@ -212,7 +212,7 @@ public class HetongActivity extends TakePhotoActivity implements AdapterView.OnI
      */
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.incidentals_add:
                 showPop(view);
                 break;
